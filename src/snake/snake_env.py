@@ -52,6 +52,7 @@ class Snake(gym.Env):
         self.win.bgcolor(BG_COLOR)
         self.win.tracer(0)
         self.win.setup(width=PIXEL_W+32, height=PIXEL_H+32)
+        self.grid = np.zeros((HEIGHT, WIDTH))
                 
         # snake
         self.snake = turtle.Turtle()
@@ -91,7 +92,7 @@ class Snake(gym.Env):
         self.win.onkey(self.go_right, 'Right')
         self.win.onkey(self.go_down, 'Down')
         self.win.onkey(self.go_left, 'Left')
-        self.win.onkey(self.bye, 'x')
+        self.win.onkey(self.bye, 'q')
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
@@ -315,14 +316,22 @@ class Snake(gym.Env):
                     elif body.xcor() > self.snake.xcor():
                         body_right.append(1)
         
-        if len(body_up) > 0: body_up = 1
-        else: body_up = 0
-        if len(body_right) > 0: body_right = 1
-        else: body_right = 0
-        if len(body_down) > 0: body_down = 1
-        else: body_down = 0
-        if len(body_left) > 0: body_left = 1
-        else: body_left = 0
+        if len(body_up) > 0: 
+            body_up = 1
+        else: 
+            body_up = 0
+        if len(body_right) > 0: 
+            body_right = 1
+        else: 
+            body_right = 0
+        if len(body_down) > 0: 
+            body_down = 1
+        else: 
+            body_down = 0
+        if len(body_left) > 0: 
+            body_left = 1
+        else: 
+            body_left = 0
 
         # state: apple_up, apple_right, apple_down, apple_left, obstacle_up, obstacle_right, obstacle_down, obstacle_left, direction_up, direction_right, direction_down, direction_left
         if self.env_info['state_space'] == 'coordinates':
