@@ -13,7 +13,7 @@ config = config.evaluation(evaluation_num_workers=1)
 # config = config.framework(framework='torch')
 print(config.to_dict())  
 # Build a Algorithm object from the config and run 1 training iteration.
-algo = config.build(env="src.snake.snake_env2.Snake")
+algo = config.build(env="src.snake.snake_env.Snake")
 # algo = config.build(env="CartPole-v1")
 
 for _ in range(10):
